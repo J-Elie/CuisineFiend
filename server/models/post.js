@@ -6,7 +6,7 @@ const postSchema = new mongoose.Schema({
   post_title: { type: String, required: true },
   post_body: { type: String, required: true },
   post_time: { type: Date, default: Date.now },
-  user_id: { type: String, required: true },
+  post_authorID: { type: String, required: true },
 });
 
 // 3. create model of schema
@@ -14,19 +14,22 @@ const Post = mongoose.model("Post", postSchema);
 
 // 4. create CRUD functions on Post model
 //CREATE a post
-//I want to update user_id to post_author
-async function createPost(title, body, userID) {
+async function createPost(title, body, authorID) {
+  if (title == "") throw Error("you must enter a title for your post");
+  if (body == "") throw Error("you must enter a body for your post");
+  //const User = await getUserByID(authorID);//this is also not working
+  //if(!User) throw Error("User not found");//this is also not working
   const newPost = await Post.create({
     post_title: title,
     post_body: body,
-    user_id: userID,
+    post_authorID: authorID,
   });
   return newPost;
 }
 
 // READ all post from a user
-async function viewPosts(userID) {
-  const posts = await getPostByUserId(userID);
+async function viewPosts(authorID) {
+  const posts = await getPostsByUserId(authorID);
   if (!posts) throw Error("no post found");
   return posts;
 }
@@ -39,6 +42,8 @@ async function viewPost(id) {
 
 // UPDATE with findByIdAndUpdate()
 async function updatePost(id, title, body) {
+  if (title == "") throw Error("you must enter a title for your post");
+  if (body == "") throw Error("you must enter a body for your post");
   const post = await Post.findByIdAndUpdate(
     { _id: id },
     { post_title: title, post_body: body },
@@ -53,14 +58,16 @@ async function deletePost(id) {
 }
 
 // utility function get all posts by user id
-async function getPostByUserId(userID) {
-  console.log();
-  return await Post.find({ user_id: userID });
+async function getPostsByUserId(authorID) {
+  return await Post.find({ post_authorID: authorID });
 }
 // utility function get post by id
-async function getPost(id) {
-  console.log();
-  return await Post.find({ _id: id });
+async function getPostByID(id) {
+  return await Post.findOne({ _id: id });
+}
+// utility function get user by id
+async function getUserByID(id) {
+  return await User.findOne({ _id: id });
 }
 
 // 5. export all functions we want to access in route files
@@ -69,4 +76,5 @@ module.exports = {
   viewPosts,
   updatePost,
   deletePost,
+  // viewPost,
 };
