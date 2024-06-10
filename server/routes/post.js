@@ -8,7 +8,7 @@ router
   .post('/createPost', async (req, res) => {
     try {
       const post = await Post.createPost(req.body.post_title, req.body.post_body, req.body.post_authorID );
-      res.send({...post});
+      res.send({...post.toObject()});
     } catch(error) {
       res.status(401).send({ message: error.message });
     }
@@ -26,7 +26,7 @@ router
   .put('/updatePost', async (req, res) => {
     try {
       const post = await Post.updatePost(req.body.id, req.body.post_title, req.body.post_body);
-      res.send({...post});
+      res.send({...post.toObject()});
     } catch(error) {
       res.status(401).send({ message: error.message });
     }
