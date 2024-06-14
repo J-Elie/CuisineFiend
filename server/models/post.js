@@ -35,7 +35,7 @@ async function viewPosts(authorID) {
 }
 // READ a post by id
 async function viewPost(id) {
-  const post = await getPost(id);
+  const post = await getPostByID(id);
   if (!post) throw Error("no post found");
   return post;
 }
@@ -65,10 +65,7 @@ async function getPostsByUserId(authorID) {
 async function getPostByID(id) {
   return await Post.findOne({ _id: id });
 }
-// utility function get user by id
-async function getUserByID(id) {
-  return await User.findOne({ _id: id });
-}
+
 
 // 5. export all functions we want to access in route files
 module.exports = {
@@ -76,5 +73,5 @@ module.exports = {
   viewPosts,
   updatePost,
   deletePost,
-  // viewPost,
+  viewPost,
 };
