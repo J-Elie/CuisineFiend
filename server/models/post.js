@@ -24,20 +24,20 @@ async function createPost(title, body, authorID) {
     post_body: body,
     post_authorID: authorID,
   });
-  return newPost;
+  return newPost._doc;
 }
 
 // READ all post from a user
 async function viewPosts(authorID) {
   const posts = await getPostsByUserId(authorID);
   if (!posts) throw Error("no post found");
-  return posts;
+  return posts._doc;
 }
 // READ a post by id
 async function viewPost(id) {
   const post = await getPostByID(id);
   if (!post) throw Error("no post found");
-  return post;
+  return post._doc;
 }
 
 // UPDATE with findByIdAndUpdate()
@@ -49,7 +49,7 @@ async function updatePost(id, title, body) {
     { post_title: title, post_body: body },
     { returnDocument: "after" }
   );
-  return post;
+  return post._doc;
 }
 
 //DELETE

@@ -8,7 +8,7 @@ router
   .post('/login', async (req, res) => {
     try {
       const user = await User.login(req.body.username, req.body.user_password);
-      res.send({...user.toObject(), user_password: undefined});
+      res.send({...user, user_password: undefined});
     } catch(error) {
       res.status(401).send({ message: error.message });
     }
@@ -17,7 +17,7 @@ router
   .post('/register', async (req, res) => {
     try {
       const user = await User.register(req.body.username, req.body.user_email, req.body.user_password);
-      res.send({...user.toObject(), user_password: undefined});
+      res.send({...user, user_password: undefined});
     } catch(error) {
       res.status(401).send({ message: error.message }); 
     }
@@ -26,7 +26,7 @@ router
   .put('/update', async (req, res) => {
     try {
       const user = await User.updatePassword(req.body.id, req.body.user_password);
-      res.send({...user.toObject(), user_password: undefined});
+      res.send({...user, user_password: undefined});
     } catch(error) {
       res.status(401).send({ message: error.message });
     }
