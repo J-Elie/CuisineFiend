@@ -8,7 +8,7 @@ router
   .post('/createComment', async (req, res) => {
     try {
       const comment = await Comment.createComment(req.body.comment_authorID, req.body.Comment_postID, req.body.comment_body, req.body.comment_rating );
-      res.send({...comment.toObject()});
+      res.send({...comment});
     } catch(error) {
       res.status(401).send({ message: error.message });
     }
@@ -26,7 +26,7 @@ router
   .put('/updateComment', async (req, res) => {
     try {
       const comment = await Comment.updateComment(req.body.id, req.body.comment_rating, req.body.comment_body);
-      res.send({...comment.toObject()});
+      res.send({...comment});
     } catch(error) {
       res.status(401).send({ message: error.message });
     }

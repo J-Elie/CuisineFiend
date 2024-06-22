@@ -1,9 +1,14 @@
 import './App.css';
+import Navbar from "./components/Navbar.js"
+import LoginForm from "./components/LoginForm.js"
+import RegisterForm from "./components/RegisterForm.js"
 
 function App() {
   return (
     <div className="App">
-     hello world
+     <Navbar/>
+     <LoginForm/>
+     <RegisterForm/>
     </div>
   );
 }

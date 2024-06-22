@@ -1,6 +1,118 @@
-.App {
+/* .App {
   text-align: center;
+} */
+:root {
+  --red: #6B0F1A;
+  --lightRed: #af5c66;
+  --white: #fefefe;
+  --trueWhite: #ffffff;
+  --lightBrown: #E39D56;
+  --black: #020202;
+  --trueBlack:#000000;
+  --gray: #cdcdcd;
+  --minWidth:320px;
+  --darkBrown: #6D3E28;
 }
+.navLogoContainer{
+  min-width:fit-content;
+}
+.navLink{
+  color: var(--black);
+}
+.navLink:hover{
+  color: var(--black);
+  text-decoration: underline;
+  text-decoration-color: var(--red);
+  text-underline-offset: 10px;
+  text-decoration-thickness: 4px;
+}
+.bg-image{
+  background-image: url("../src/images/register-bg.jpg")
+}
+.swapForm{
+     width: 100%;
+     overflow: visible;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+}
+.formComponent{
+  background-color: var(--white);
+  min-width: var(--minWidth);
+  border: solid var(--gray);
+  border-radius: 25px;
+  box-shadow: 2px 1px 3px var(--gray);
+}
+.form-control:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 0.2rem var(--lightRed);
+} 
+.form-control {
+  border-color: var(--red);
+  background-color: var(--white);
+} 
+.form-check-input{
+  border-color: var(--red);
+  box-shadow:none;
+}
+.form-check-input:checked{
+  border-color: var(--red);
+  background-color: var(--red);
+  box-shadow:none;
+}
+.form-check-input:not(:checked){
+  border-color: var(--red);
+  background-color: var(--white);
+  box-shadow:none;
+}
+.form-check-input:focus{
+  border-color: var(--red);
+  background-color: var(--red);
+  box-shadow: 0 0 0 0.2rem var(--lightRed);
+}
+.form-check-input:hover{
+  box-shadow: 0 0 0 0.2rem var(--lightRed);
+}
+.btn-color{
+  border-color: var(--red);
+  background-color: var(--red);
+  color: var(--white);
+}
+.btn-color:hover{
+  border-color: var(--lightRed);
+  background-color: var(--lightRed);
+  color: rgb(0, 0, 0);
+}
+.btn-color:active{
+  border-color: var(--lightRed);
+  background-color: var(--lightRed);
+  color: var(--trueWhite);
+}
+.btn-color:not(:disabled):not(:disabled):active {
+  border-color: var(--lightRed);
+  background-color: var(--lightRed);
+  color: rgb(0, 0, 0);
+} 
+
+.swapLink:link, .swapLink:visited {
+  color: var(--darkBrown);
+  text-decoration: underline var(--darkBrown)!important;
+}
+.logo{
+  width: 5vw;
+  min-width: 80px;
+  height: 5vw;
+  min-height: 80px;
+  display: block;
+}
+.navLogo{
+  width: 2.5vw;
+  min-width: 40px;
+  height: 2.5vw;
+  min-height: 40px;
+}
+
+
+
 
 .App-logo {
   height: 40vmin;

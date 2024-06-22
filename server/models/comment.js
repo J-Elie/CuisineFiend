@@ -23,7 +23,7 @@ async function createComment(authorID, postID, body, rating) {
     comment_body: body,
     comment_rating: rating,
   });
-  return newComment;
+  return newComment._doc;
 }
 
 // READ all comments on a post
@@ -37,7 +37,7 @@ async function viewComments(postID) {
 async function viewComment(id) {
   const comment = await getCommentByID(id);
   if (!comment) throw Error("no comment found");
-  return comment;
+  return comment._doc;
 }
 
 // UPDATE with findByIdAndUpdate()
@@ -49,7 +49,7 @@ async function updateComment(id, rating, body) {
     { comment_rating: rating, comment_body: body },
     { returnDocument: "after" }
   );
-  return comment;
+  return comment._doc;
 }
 
 //DELETE

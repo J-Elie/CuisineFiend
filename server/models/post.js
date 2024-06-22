@@ -31,7 +31,7 @@ async function createPost(title, body, authorID) {
 async function viewPosts(authorID) {
   const posts = await getPostsByUserId(authorID);
   if (!posts) throw Error("no post found");
-  return posts._doc;
+  return posts;
 }
 // READ a post by id
 async function viewPost(id) {
