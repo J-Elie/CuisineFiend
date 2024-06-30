@@ -13,6 +13,22 @@
   --minWidth:320px;
   --darkBrown: #6D3E28;
 }
+.postBody{
+  white-space: pre-wrap;
+}
+.cardContainer{
+  min-width: var(--minWidth);
+  max-width: 100vw;
+}
+.liPosts{
+  margin: 0px;
+  padding: 0px;
+}
+.ulPosts{
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+}
 .navLogoContainer{
   min-width:fit-content;
 }
