@@ -48,10 +48,6 @@ const ProfilePage = (props) => {
     setRerender((prevState) => prevState - 1);
   }
 
-  function doubleRender() {
-    changeState();
-    changeState();
-  }
   const [items, setItems] = useState([]);
   const [statePost, stateShowPost] = useState("renderPosts");
   useEffect(() => {
@@ -81,30 +77,33 @@ const ProfilePage = (props) => {
       });
   }, [rerender]);
 
-  function onDelete(id) {
-    fetchData(
+  const onDelete = (id) => {
+   fetchData(
       "/post/deletePost",
       {
-        _id: id,
+        id: id,
       },
       "delete"
     )
       .then((data) => {
         if (!data.message) {
-          // console.log(data,"with id of", id);
-          // console.log("successful delete");
+          console.log(data);
+          console.log(`successful delete of ${id}`);
+
           // navigate("/");
+          changeState();
         }
+        // console.log(data);
       })
       .catch((error) => {
         console.log(`error! ${error.message}`);
       });
-  }
+  };
   console.log();
   return (
     <div>
       <div className=" container d-flex flex-row justify-content-center w-50 ">
-        <div className=" formComponent pt-3 pb-3 w-100 ">
+        <div className=" formComponent pt-3 pb-3 w-100 postForm">
           <form onSubmit={onSubmit} className=" ps-5 pe-5 w-100 min-w-min ">
             {/* username */}
             <div className="form-floating mb-3 mt-3 min-w-min">
@@ -112,28 +111,18 @@ const ProfilePage = (props) => {
                 type="text"
                 className="form-control rounded-pill"
                 id="post_title"
-                placeholder="Enter a post_title"
+                placeholder="Enter a title"
                 name="post_title"
                 onChange={onChange}
                 value={post_title}
                 required
               />
               <label className="form-check-label" htmlFor="post_title">
-                post_title*
+                Recipe_title*
               </label>
             </div>
             {/* email */}
-            <div className="form-floating mb-3 mt-3 ">
-              {/* <input
-                type="text"
-                className="form-control rounded-pill"
-                id="post_body"
-                placeholder="Enter your post_body"
-                name="post_body"
-                onChange={onChange}
-                value={post_body}
-                required
-              /> */}
+            <div className="form-floating mb-3 mt-3 h-100">
               <textarea
                 class="form-control"
                 id="post_body"
@@ -142,9 +131,10 @@ const ProfilePage = (props) => {
                 onChange={onChange}
                 value={post_body}
                 required
+                placeholder="Recipe directions*"
               ></textarea>
               <label className="form-check-label" htmlFor="post_body">
-                post_body*
+              Recipe directions*
               </label>
             </div>
 
@@ -190,11 +180,11 @@ const ProfilePage = (props) => {
                           <div className="w-75 d-flex flex-row justify-content-around">
                             <div>
                               <button
-                                // onClick={onDelete(item._id)}
+                                onClick={() => onDelete(item._id)}
                                 type="button"
                                 className="btn mb-3 btn-color"
                               >
-                                Delete Post
+                                Delete Recipe
                               </button>
                             </div>
                             <div>
@@ -202,8 +192,9 @@ const ProfilePage = (props) => {
                                 // onClick={onEdit(item._id)}
                                 type="button"
                                 className="btn mb-3 btn-color"
+                                disabled
                               >
-                                Edit Post
+                                Edit Recipe
                               </button>
                             </div>
                           </div>

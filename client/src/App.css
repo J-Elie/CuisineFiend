@@ -13,6 +13,9 @@
   --minWidth:320px;
   --darkBrown: #6D3E28;
 }
+.postForm{
+  /* min-height: 50vh; */
+}
 .postBody{
   white-space: pre-wrap;
 }
